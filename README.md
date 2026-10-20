@@ -79,8 +79,8 @@ flowchart TD
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/your-username/chronoflow-ai.git
-cd chronoflow-ai
+git clone https://github.com/SubikshanS/chrono-agent.git
+cd chrono-agent
 ```
 
 ### 2. Install Dependencies
