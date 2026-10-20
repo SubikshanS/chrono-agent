@@ -57,11 +57,16 @@ export function getStoredHistory() {
   } catch (e) {
     console.error('Failed to parse history', e);
   }
+  return {};
+}
 
-  // Generate rich realistic 365-day seed history if empty
-  const seed = generateRealisticHistory();
-  saveStoredHistory(seed);
-  return seed;
+export function clearAllStoredData() {
+  try {
+    localStorage.removeItem(STORAGE_KEYS.SCHEDULE);
+    localStorage.removeItem(STORAGE_KEYS.HISTORY);
+  } catch (e) {
+    console.error('Failed to clear storage', e);
+  }
 }
 
 export function saveStoredHistory(history) {

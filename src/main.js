@@ -9,7 +9,8 @@ import {
   getStoredSchedule,
   saveStoredSchedule,
   getStoredHistory,
-  saveStoredHistory
+  saveStoredHistory,
+  clearAllStoredData
 } from './utils/storage.js';
 
 // Realistic sample presets
@@ -34,9 +35,16 @@ const PRESETS = {
 
 class ChronoFlowApp {
   constructor() {
+    const isResetRequested = window.location.search.includes('reset=true');
+    if (isResetRequested) {
+      clearAllStoredData();
+      localStorage.clear();
+      sessionStorage.clear();
+    }
+
     this.config = getStoredConfig();
-    this.schedule = getStoredSchedule() || [];
-    this.history = getStoredHistory();
+    this.schedule = isResetRequested ? [] : (getStoredSchedule() || []);
+    this.history = isResetRequested ? {} : (getStoredHistory() || {});
     this.todayStr = new Date().toISOString().split('T')[0];
 
     this.timelineComponent = null;
@@ -47,9 +55,8 @@ class ChronoFlowApp {
     this.initComponents();
     this.attachEventListeners();
 
-    // If no schedule exists yet, load the default founder preset automatically
-    if (this.schedule.length === 0) {
-      this.loadPreset('founder');
+    if (isResetRequested) {
+      window.history.replaceState({}, document.title, window.location.pathname);
     }
   }
 
@@ -263,12 +270,7 @@ class ChronoFlowApp {
     const resetBtn = document.getElementById('btn-reset-day');
     if (resetBtn) {
       resetBtn.addEventListener('click', () => {
-        if (confirm('Clear current schedule to start fresh?')) {
-          this.schedule = [];
-          saveStoredSchedule([]);
-          this.timelineComponent.setSchedule([]);
-          document.getElementById('intake-input-text').value = '';
-        }
+        this.resetToZero();
       });
     }
 
@@ -366,22 +368,23 @@ class ChronoFlowApp {
       .filter(s => s.completed && (s.category === 'deep-work' || s.category === 'goal-chunk'))
       .reduce((acc, s) => acc + (s.duration || 0), 0);
 
-    // Also factor scheduled items so creating a plan immediately adds activity
-    const totalPlannedMinutes = this.schedule.reduce((acc, s) => acc + (s.duration || 0), 0);
-    const effectiveMinutes = Math.max(focusMinutes, Math.floor(totalPlannedMinutes * 0.4));
-    const effectiveCount = Math.max(completedTasks, 2);
+    if (this.schedule.length === 0 && completedTasks === 0) {
+      return;
+    }
 
     this.history = GrowthAgent.updateDailyContribution(
       this.todayStr,
-      effectiveCount,
-      effectiveMinutes,
+      completedTasks,
+      focusMinutes,
       this.history
     );
 
     saveStoredHistory(this.history);
     this.heatmapComponent.updateHistory(this.history);
+    this.updateMetricDisplays();
+  }
 
-    // Update header pills
+  updateMetricDisplays() {
     const metrics = GrowthAgent.calculateMetrics(this.history);
     const streakEl = document.getElementById('header-streak-pill');
     const focusEl = document.getElementById('header-focus-pill');
@@ -391,6 +394,52 @@ class ChronoFlowApp {
     if (focusEl) {
       focusEl.innerHTML = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg><span><strong>${metrics.totalFocusHours}</strong> Focus Hrs</span>`;
     }
+
+    const growthMetricsRow = document.querySelector('.growth-metrics-row');
+    if (growthMetricsRow) {
+      growthMetricsRow.innerHTML = `
+        <div class="stat-pill">
+          <span>Current Streak:</span>
+          <strong style="color: var(--accent-amber);">${metrics.currentStreak} Days</strong>
+        </div>
+        <div class="stat-pill">
+          <span>All-Time Best:</span>
+          <strong style="color: var(--accent-indigo);">${metrics.longestStreak} Days</strong>
+        </div>
+        <div class="stat-pill">
+          <span>Consistency:</span>
+          <strong style="color: var(--accent-emerald);">${metrics.completionRate}</strong>
+        </div>
+      `;
+    }
+  }
+
+  resetToZero() {
+    this.schedule = [];
+    this.history = {};
+    clearAllStoredData();
+    try {
+      localStorage.clear();
+      sessionStorage.clear();
+    } catch (e) {}
+
+    saveStoredSchedule([]);
+    saveStoredHistory({});
+
+    if (this.timelineComponent) {
+      this.timelineComponent.setSchedule([]);
+    }
+    if (this.heatmapComponent) {
+      this.heatmapComponent.updateHistory({});
+    }
+
+    const textarea = document.getElementById('intake-input-text');
+    if (textarea) textarea.value = '';
+
+    const statusText = document.getElementById('pipeline-status-text');
+    if (statusText) statusText.innerText = 'Reset to zero. Ready for your fresh start!';
+
+    this.updateMetricDisplays();
   }
 }
 

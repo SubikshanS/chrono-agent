@@ -437,12 +437,14 @@ export class GrowthAgent {
       currentStreak = 0;
     }
 
+    const completionRate = totalCompletedTasks > 0 ? '100%' : '0%';
+
     return {
       totalFocusHours: Math.round(totalFocusHours * 10) / 10,
       totalCompletedTasks,
-      currentStreak: Math.max(currentStreak, 12), // seed realistic baseline
-      longestStreak: Math.max(longestStreak, 18),
-      completionRate: '94%'
+      currentStreak,
+      longestStreak,
+      completionRate
     };
   }
 }
