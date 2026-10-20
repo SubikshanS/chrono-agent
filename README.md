@@ -1,114 +1,145 @@
-# Blockchain-Based Digital Warranty Management System 🛡️⚡
+<div align="center">
 
-A clean, professional, and reliable decentralized application (dApp) built on the **Ethereum Sepolia Testnet** for digital warranty management across the product lifecycle.
+# ⏱️ ChronoFlow AI
 
----
+**Autonomous Time Architect & GitHub-Style Growth Matrix**
 
-## 🌟 Key Features & Workflow
+An intelligent, multi-agent AI system that transforms raw, natural language thoughts into circadian-optimized focus blocks — visualized with a real-time GitHub-style green contribution heatmap.
 
-The system implements an end-to-end role-based lifecycle:
+[![Vite](https://img.shields.io/badge/Vite-Bundler-646CFF?style=flat-square&logo=vite)](https://vitejs.dev/)
+[![Multi-Agent](https://img.shields.io/badge/Architecture-Multi--Agent-10b981?style=flat-square)](https://github.com/SubikshanS/chrono-agent)
+[![OLED Black](https://img.shields.io/badge/Theme-OLED%20Black%20%23000000-000000?style=flat-square)](https://github.com/SubikshanS/chrono-agent)
+[![Privacy First](https://img.shields.io/badge/Privacy-100%25%20Client--Side-brightgreen?style=flat-square)](https://github.com/SubikshanS/chrono-agent)
+[![License](https://img.shields.io/badge/License-MIT-blue?style=flat-square)](LICENSE)
 
-1. **Admin (Smart Contract Owner):** Authorizes Manufacturers, Retailers, and Service Centers on-chain.
-2. **Manufacturer:** Registers products with unique serial numbers and issues digital warranties.
-3. **Retailer:** Verifies product registration and assigns product warranty ownership to customer wallet addresses upon sale.
-4. **Customer:** Views owned products, verifies warranty validity, and files on-chain service claims for defective products.
-5. **Service Center:** Inspects incoming claims, approves/rejects them, and logs repair completion on the Sepolia blockchain.
-6. **Public Warranty Verification:** Anyone can search by Product ID or Warranty ID to verify product authenticity, current owner, and active/expired warranty status.
-
----
-
-## 🛠️ Technology Stack
-
-- **Frontend:** React.js, CSS, Lucide Icons
-- **Blockchain Interactivity:** Ethers.js v6, MetaMask Extension
-- **Smart Contract Layer:** Solidity (`^0.8.20`), Solc compiler
-- **Network:** Sepolia Ethereum Testnet
-- **Version Control:** Git
-
-> 🚫 *No Vite, Node.js backend server, MongoDB/SQL databases, IPFS, or fake mock data used. The Solidity smart contract is the single source of truth.*
+</div>
 
 ---
 
-## 📁 Project Structure
+## 💡 Overview
 
-```
-digital-warranty-system/
-├── contracts/
-│   └── WarrantyManagement.sol           # Core Solidity Smart Contract
-├── scripts/
-│   ├── compile.mjs                       # Standalone Solc contract compiler
-│   └── deploy.mjs                        # Ethers.js Sepolia deployment script
-├── src/
-│   ├── components/
-│   │   └── Common/
-│   │       ├── Navbar.jsx                # Brand, Network indicator, Wallet chip
-│   │       ├── Sidebar.jsx               # Navigation drawer
-│   │       ├── StatusBadge.jsx           # Color-coded state badges
-│   │       ├── AlertMessage.jsx          # Error/Success alert banners
-│   │       ├── LoadingSpinner.jsx        # On-chain query spinner
-│   │       └── TransactionModal.jsx      # Step-by-step transaction UX modal
-│   ├── pages/
-│   │   ├── Landing/                      # System overview & workflow diagram
-│   │   ├── Admin/                        # Organization authorization portal
-│   │   ├── Manufacturer/                 # Product registration & warranty issuance
-│   │   ├── Retailer/                     # Product search & customer assignment
-│   │   ├── Customer/                     # My Products, Warranty Claim filing
-│   │   ├── ServiceCenter/                # Claim inspection & status updates
-│   │   └── Verification/                 # Public warranty verification lookup
-│   ├── contracts/
-│   │   ├── WarrantyManagementABI.json    # Compiled Contract ABI
-│   │   └── WarrantyManagementBytecode.json # Compiled Bytecode
-│   ├── services/
-│   │   └── ethersService.js              # Dedicated Ethers.js integration service
-│   ├── utils/
-│   │   ├── contractConfig.js             # Deployed address & Sepolia chain config
-│   │   └── helpers.js                    # Address formatting & error parsers
-│   ├── App.jsx                           # Main application component
-│   └── App.css                           # Modern responsive CSS styles
-└── package.json
+Traditional calendars require tedious manual block-dragging and time estimation. 
+
+**ChronoFlow AI** inverts the workflow: simply paste your stream-of-consciousness plans, fixed meetings, and broad goals. An autonomous pipeline of five specialized agents parses commitments, matches deep work with your biological peak hours, decomposes large goals into atomic steps, and tracks your daily focus growth on a GitHub-style green matrix.
+
+---
+
+## 🤖 Multi-Agent Architecture
+
+```mermaid
+graph LR
+    Input["Natural Language Input"] --> A["1. IntakeAgent"]
+    A -->|Broad Goals| B["2. GoalDecomposer"]
+    A -->|Flexible Tasks| C["3. EnergyOptimizer"]
+    B -->|Milestones| C
+    A -->|Fixed Events| D["4. ConflictResolver"]
+    C -->|Cognitive Queue| D
+    D --> Schedule["Daily Itinerary"]
+    Schedule --> E["5. GrowthAgent\n(Green Matrix)"]
 ```
 
+| Agent | Role | Function |
+| :--- | :--- | :--- |
+| 📥 **IntakeAgent** | Entity Extractor | Detects fixed meetings, flexible tasks, deadlines, and wake/sleep windows. |
+| 🧩 **GoalDecomposer** | Milestone Synthesizer | Breaks broad goals (*"prepare for exam"*, *"ship MVP"*) into 30–60m atomic subtasks. |
+| ⚡ **EnergyOptimizer** | Circadian Matcher | Slots high-cognitive work into personal peak hours (Morning Lark, Night Owl, Third Bird). |
+| 🛡️ **ConflictResolver** | Timeline Assembler | Locks non-negotiables, resolves clashes, and injects 10–15m restorative buffers. |
+| 🟩 **GrowthAgent** | Habit Tracker | Calculates daily streaks, logs focus hours, and updates the 52-week green matrix. |
+
 ---
 
-## 🚀 How to Run & Deploy
+## ✨ Features
 
-### 1. Install Dependencies
+- 🟩 **GitHub-Style Contribution Heatmap**: 52-week productivity matrix using GitHub's signature green scale (`Level 0` to glowing `Level 4`).
+- 🌙 **True OLED Pitch Black (`#000000`)**: Ultra-high-contrast, distraction-free aesthetic with glowing neon emerald and electric indigo accents.
+- 🎯 **Interactive Timeline Cards**: Check off completed tasks with celebratory particle confetti, shift tasks by +30m, or delete blocks on the fly.
+- 📅 **One-Click Calendar Sync**: Export standard RFC-5545 `.ics` files for **Google Calendar**, **Apple Calendar**, and **Outlook**.
+- 📋 **Markdown Export**: Copy formatted agenda tables directly to Notion, Slack, or Obsidian.
+- 🔒 **100% Private & Secure**: Operates entirely client-side in the browser. Zero tracking, zero telemetry, and XSS-sanitized.
+
+---
+
+## ⚡ Quickstart
+
+### Prerequisites
+- [Node.js 18+](https://nodejs.org/)
+
 ```bash
-cd digital-warranty-system
+# 1. Clone the repository
+git clone https://github.com/SubikshanS/chrono-agent.git
+cd chrono-agent
+
+# 2. Install dependencies
 npm install
+
+# 3. Start local development server
+npm run dev
 ```
 
-### 2. Compile Smart Contract
-To compile `WarrantyManagement.sol` and update the ABI/Bytecode in `src/contracts/`:
-```bash
-node scripts/compile.mjs
-```
-
-### 3. Deploy to Sepolia Testnet
-Create a `.env` file in the root directory:
-```env
-PRIVATE_KEY=0xYourSepoliaPrivateKey
-SEPOLIA_RPC_URL=https://rpc.sepolia.org
-```
-
-Run the deployment script:
-```bash
-node scripts/deploy.mjs
-```
-*The script will automatically deploy the contract to Sepolia and update `src/utils/contractConfig.js` with the new contract address.*
-
-### 4. Start React Development Server
-```bash
-npm start
-```
-Open [http://localhost:3000](http://localhost:3000) in your browser with MetaMask installed.
+Open **`http://localhost:5173/`** in your browser.
 
 ---
 
-## 🎓 College Demonstration Guide
+## 📦 Production Build
 
-1. **Connect Admin Wallet:** Connect the MetaMask wallet that deployed the contract. Open **Admin Portal** and authorize a secondary wallet address as **Manufacturer**, another as **Retailer**, and another as **Service Center**.
-2. **Switch to Manufacturer Wallet:** Open **Manufacturer Portal**. Register a new product (e.g. `PRD-1001`), then create a 365-day warranty for `PRD-1001`.
-3. **Switch to Retailer Wallet:** Open **Retailer Portal**. Search for `PRD-1001`, verify details, enter the **Customer's Wallet Address**, and click **Assign Ownership**.
-4. **Switch to Customer Wallet:** Open **Customer Portal**. Verify that `PRD-1001` appears under **My Products** with an **ACTIVE** badge. Click **Raise Warranty Claim**, enter a problem description, and submit.
-5. **Switch to Service Center Wallet:** Open **Service Center Portal**. Locate the submitted claim, click **Approve**, then click **Mark Service Completed**. Observe real-time status updates confirmed on Sepolia!
+```bash
+npm run build
+```
+
+Generates a minified, production-ready bundle in `dist/` ready to deploy on **Vercel**, **Netlify**, or **GitHub Pages**.
+
+---
+
+## 📂 Project Structure
+
+```text
+chrono-agent/
+├── src/
+│   ├── agents/
+│   │   └── agent-pipeline.js    # Multi-agent orchestrator logic
+│   ├── components/
+│   │   ├── AgentReasoningView.js# Live agent thought inspector
+│   │   ├── CalendarTimeline.js  # Interactive schedule & task cards
+│   │   └── HeatmapGraph.js      # GitHub-style green contribution matrix
+│   ├── styles/
+│   │   ├── app.css              # Main component & layout styles
+│   │   └── design-tokens.css    # OLED pitch black theme tokens
+│   ├── utils/
+│   │   ├── ics-exporter.js      # RFC-5545 .ics generator
+│   │   ├── sanitize.js          # XSS prevention utilities
+│   │   └── storage.js           # LocalStorage state management
+│   └── main.js                  # Application controller
+├── index.html                   # Entry point
+├── package.json                 # Dependencies & scripts
+└── LICENSE                      # MIT License
+```
+
+---
+
+<details>
+<summary><strong>💡 Example Natural Language Prompts (Click to Expand)</strong></summary>
+
+<br>
+
+**🚀 Startup Founder Sprint:**
+```text
+I have an investor pitch sync at 11:00 am for 45 minutes. Need 2.5 hours of uninterrupted deep coding for the checkout payment refactor. Want to synthesize user interview notes for 45 mins, 30m gym session, and zero out inbox by 6:30 pm.
+```
+
+**🎓 Exam Mastery & Study:**
+```text
+I have a physics lab presentation at 2:00 pm for 1 hour. Goal: Prepare for machine learning exam - master backpropagation math, attention mechanisms, and practice sample problems for 3 hours. Need 30m run and wind down by 11:00 pm.
+```
+
+**💼 Executive Leadership:**
+```text
+Leadership sync at 9:30 am for 1 hour. Client review call at 3:30 pm for 45 mins. Need 2 hours to finalize Q4 budget allocation, 30 mins for 1-on-1 prep, and 20 mins mindfulness break.
+```
+
+</details>
+
+---
+
+## 📄 License
+
+Distributed under the [MIT License](LICENSE).
